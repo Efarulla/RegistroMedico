@@ -12,7 +12,9 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import Model.Atleta;
 import Gestion.AtletaGestion;
+import Gestion.Reporte;
 import java.util.List;
+import org.primefaces.PrimeFaces;
 
 /**
  *
@@ -25,15 +27,35 @@ public class AtletaController extends Atleta implements Serializable {
     public AtletaController() {
     }
 
-    public String inserta() {
+    public void inserta() {
         //Si puedo insertar el atleta...
         if (AtletaGestion.insertar(this)) {
-            return "list.xhtml";
-        } else {  //si no pudo insertarlo
-            FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Error", "Posible indentificación duplicada...");
-            FacesContext.getCurrentInstance().addMessage("editaAtletaForm:identificacion", mensaje);
-            return "edita.xhtml";
+          this.setApellido("");
+          this.setCedula(0);
+          this.setCodigo(0);
+          this.setDireccion("");
+          this.setNombre("");
+          this.setTelefono(0);
+          this.setPeso(0.00);
+          this.setCorreo("");
+        
+          
+            
+             FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "SUCCES", "Usuario Agregado Correctamente");
+            PrimeFaces.current().dialog().showMessageDynamic(mensaje);
+        
+            
+           
+        
+        
+        
+        } else { 
+            
+                FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Error", "Usuario No Agregado");
+            PrimeFaces.current().dialog().showMessageDynamic(mensaje);
+           
         }
     }
 
@@ -118,6 +140,48 @@ public class AtletaController extends Atleta implements Serializable {
         }
     }
     
-   
+  public void reporteAtleta() {
+
+      
+        String realPath="/Reportes/reportesAtleta.jasper";
+        String nombreArchivoSalida="attachement; filename=reporteAtletas.pdf";
+        Reporte.descargarPdf(realPath,null,nombreArchivoSalida);
+        
+        
+    
+  
+}
+  public String navegaAtleta(){
+      this.borrarDatosAtleta();
+  return "/Atleta/Atleta.xhtml";
+  }
+  
+  public String navegaedita(){
+      this.borrarDatosAtleta();
+  return "/Atleta/edita.xhtml";
+  }
+  
+  public String navegaReportes(){
+     
+  return "/Reportes/Reportes.xhtml";
+  }
+  
+   public String navegaRespaldo(){
+     
+  return "/Respaldo/Respaldo.xhtml";
+  }
+  
+  
+  public void borrarDatosAtleta(){
+  this.setApellido("");
+  this.setCedula(0);
+  this.setCodigo(0);
+  this.setCorreo("");
+  this.setDireccion("");
+  this.setFechaNaci(null);
+  this.setNombre("");
+  this.setPeso(0.0);
+  this.setTelefono(0);
+  }
 
 }
