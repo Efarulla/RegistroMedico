@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../resources/plantillas/plantillaMenu.xhtml">
+
+            <ui:define name="content">
+                
+        <h:form id="passwordForm" >
+            <b:container fluid="true" >
+                <b:panel look="primary" title="Cambio De Contraseña" collapsible="false"  >
+                 <b:row >
+                     
+                        <b:column col-md="2" >
+                            <h:outputLabel value="Usuario" for="usuario" />
+                            <h:commandButton action="#{usuarioController.ventana()}" value="JJJJ"/>
+
+                        </b:column>
+                        <b:column col-md="6">
+                            <b:inputText placeholder="Usuario"
+                                         id="usuario" 
+                                        
+                                         required="true"
+                                         autocomplete="false"
+                                         value="#{usuarioController.codigo}">
+                                <f:facet name="prepend">
+                                    <b:icon name="user"/>
+                                </f:facet>
+                            </b:inputText>
+                        </b:column>
+                        
+                    </b:row>
+                    
+                      <b:row >
+                        <b:column  col-md="2">
+                            <h:outputLabel value="Clave" for="password1"/>
+                        </b:column>
+                        <b:column  col-md="6">
+                            <b:inputSecret placeholder="clave"
+                                           id="passwrod1" 
+                                          
+                                           required="true"
+                                           autocomplete="true"
+                                           value="#{usuarioController.password1}" >
+                                <f:facet name="prepend">
+                                    <b:iconAwesome name="key"/>
+                                </f:facet>
+                            </b:inputSecret>
+                        </b:column>
+                        <b:column medium-screen="6" style-class="message">
+                            <b:message for="password1" />
+                        </b:column>
+                    </b:row>
+ <b:row >
+                        <b:column  col-md="2">
+                            <h:outputLabel value="Nueva Clave" for="password2"/>
+                        </b:column>
+                        <b:column  col-md="6">
+                            <b:inputSecret placeholder="Nueva Clave"
+                                           id="password2" 
+                                          
+                                           required="true"
+                                           autocomplete="true"
+                                           value="#{usuarioController.password2}" >
+                                <f:facet name="prepend">
+                                    <b:iconAwesome name="key"/>
+                                </f:facet>
+                            </b:inputSecret>
+                        </b:column>
+                        <b:column medium-screen="6" style-class="message">
+                            <b:message for="password2" />
+                        </b:column>
+                    </b:row>
+                    <b:row >
+                        <b:column medium-screen="2"/>
+                        <b:column medium-screen="6">
+                            <b:commandButton value="Cambiar Contraseña"
+                                             look="primary"
+                                             style="width: 100%"
+                                             action="#{usuarioController.cambioPassword()}"/>
+                        </b:column>
+                    </b:row>
+
+
+
+
+
+                </b:panel>
+            </b:container>
+        </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
