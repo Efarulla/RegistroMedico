@@ -11,8 +11,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Model.Conexion;
 import Model.Atleta;
+import java.io.StringWriter;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonWriter;
 
 /**
  *
@@ -20,23 +27,23 @@ import java.util.ArrayList;
  */
 public class AtletaGestion {
 
-    private static final String SQL_INSERT_ATLETA = "insert into atleta values (?,?,?,?,?,?,?,?,?)";
+    private static final String SQL_INSERT_ATLETA = "INSERT INTO ATLETA (CEDULA_A,NOMBRE_A,APELLIDO_A,FECHA_NACI_A,PESO_A,CORREO_A,DIRECCION_A,TELEFONO_A) \n"
+            + "VALUES (?,?,?,?,?,?,?,?)";
 
     public static boolean insertar(Atleta atleta) {
         try {
             PreparedStatement sentencia
                     = Conexion.getConexion().prepareStatement(SQL_INSERT_ATLETA);
-            sentencia.setInt(1, atleta.getCodigo());
-            sentencia.setInt(2, atleta.getCedula());
-            sentencia.setString(3, atleta.getNombre());
-            sentencia.setString(4, atleta.getApellido());
-            sentencia.setObject(5, atleta.getFechaNaci());
-            sentencia.setDouble(6, atleta.getPeso());
-            sentencia.setString(7, atleta.getCorreo());
-            sentencia.setString(8, atleta.getDireccion());
-            sentencia.setInt(9, atleta.getTelefono());
-            int fila = sentencia.executeUpdate();
-            return fila > 0; //retorna true si hay un número de fila >0...
+
+            sentencia.setInt(1, atleta.getCedula());
+            sentencia.setString(2, atleta.getNombre());
+            sentencia.setString(3, atleta.getApellido());
+            sentencia.setObject(4, atleta.getFechaNaci());
+            sentencia.setDouble(5, atleta.getPeso());
+            sentencia.setString(6, atleta.getCorreo());
+            sentencia.setString(7, atleta.getDireccion());
+            sentencia.setInt(8, atleta.getTelefono());
+            return sentencia.executeUpdate() > 0;
         } catch (SQLException ex) {
             Logger.getLogger(AtletaGestion.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -44,7 +51,7 @@ public class AtletaGestion {
     }
 
     private static final String SQL_UPDATE_ATLETA
-            = "update atleta set cedula_a=?, nombre_A=?, apellido_a=?, fechaNaci_a=?, peso_a=?, correo_a=?, direccion_a=?, telefono_a=? where codigo_atleta=?";
+            = "update atleta set cedula_a=?, nombre_A=?, apellido_a=?, fecha_Naci_a=?, peso_a=?, correo_a=?, direccion_a=?, telefono_a=? where codigo_atleta=?";
 
     public static boolean modificar(Atleta atleta) {
         try {
@@ -138,18 +145,66 @@ public class AtletaGestion {
         }
         return lista;
     }
-    
- public static boolean eliminarConCodigo(int codigo) {
+
+    public static boolean eliminarConCodigo(int codigo) {
         try {
             PreparedStatement sentencia
                     = Conexion.getConexion().prepareStatement(SQL_DELETE_ATLETA);
             sentencia.setInt(1, codigo);
             int fila = sentencia.executeUpdate();
-            return fila > 0; 
+            return fila > 0;
         } catch (SQLException ex) {
             Logger.getLogger(AtletaGestion.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false; 
+        return false;
+    }
+
+    public static String getJson() {
+        Atleta atleta = new Atleta();
+        String tiraJson = "";
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            PreparedStatement sentencia
+                    = Conexion.getConexion().prepareStatement(SQL_SELECT_ATLETAS);
+
+            ResultSet rs = sentencia.executeQuery();
+            while (rs.next()) {
+                atleta.setCodigo(rs.getInt(1));
+                atleta.setCedula(rs.getInt(2));
+                atleta.setNombre(rs.getString(3));
+                atleta.setApellido(rs.getString(4));
+                atleta.setFechaNaci(rs.getDate(5));
+                atleta.setPeso(rs.getDouble(6));
+                atleta.setCorreo(rs.getString(7));
+                atleta.setDireccion(rs.getString(8));
+                atleta.setTelefono(rs.getInt(9));
+                JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+                JsonObject objetoJson = jsonObjectBuilder.
+                        add("codigo", atleta.getCodigo()).
+                        add("cedula", atleta.getCedula()).
+                        add("nombre", atleta.getNombre()).
+                        add("apellido", atleta.getApellido()).
+                        add("fechaNaci", dateFormat.format(atleta.getFechaNaci())).
+                        add("peso", atleta.getPeso()).
+                        add("corre", atleta.getCorreo()).
+                        add("direccion", atleta.getDireccion()).
+                        add("telefono", atleta.getTelefono()).build();
+
+                StringWriter salida = new StringWriter();
+                JsonWriter jsonWriter = Json.createWriter(salida);
+                jsonWriter.writeObject(objetoJson);
+                if (tiraJson == null) {
+                    tiraJson = salida.toString() + "\n";
+                }else{
+                tiraJson = tiraJson + salida.toString() + "\n";
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AtletaGestion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tiraJson;
     }
 
 }

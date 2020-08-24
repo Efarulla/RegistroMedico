@@ -9,17 +9,18 @@ public class Mail {
     private String message;
         
     private String codigo;
+    
+    private String cuerpo;
    
     public Mail() {
     }
 
-    public Mail(String toMail, String message, String codigo) {
+    public Mail(String toMail, String message, String codigo, String cuerpo) {
         this.toMail = toMail;
         this.message = message;
         this.codigo = codigo;
+        this.cuerpo = cuerpo;
     }
-
-  
 
     public String getToMail() {
         return toMail;
@@ -45,7 +46,14 @@ public class Mail {
         this.codigo = codigo;
     }
 
-    
+    public String getCuerpo() {
+        return cuerpo;
+    }
+
+    public void setCuerpo(String cuerpo) {
+        this.cuerpo = cuerpo;
+    }
+
     
     
     

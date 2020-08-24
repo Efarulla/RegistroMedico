@@ -63,5 +63,28 @@ public class ConsultaController extends Consulta implements Serializable {
         
     }
     
-    
+     public String navegaConsulta(){
+     this.borrarConsulta();
+     return "/Consulta/Consulta.xhtml?faces-redirect=true";
+     
+     }
+     
+     public void borrarConsulta(){
+     this.setAlergia("");
+     this.setCodigo(0);
+     this.setCodigoAtleta(0);
+     this.setCodigoReceta(0);
+     this.setFecha(null);
+     this.setObservacion("");
+     this.setPadecimiento("");
+     this.setSintoma("");
+   
+     
+     }
+     
+      public String atletaingresocunsulta(int codigo){
+     this.setCodigoAtleta(codigo);
+     return "/Consulta/Consulta.xhtml#j_idt28";
+     
+     }
 }

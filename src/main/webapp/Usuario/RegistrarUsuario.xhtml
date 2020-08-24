@@ -4,22 +4,54 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
-        <ui:composition template="./resources/plantillas/plantillaMenu.xhtml">
+        <ui:composition template="./../resources/plantillas/plantillaMenu.xhtml">
 
             <ui:define name="content">
-                  <h:form id="registroConsulta">
+            
+                
+ <h:form id="registrarUsuario">
             <b:container fluid="true">
 
-                <b:panel title="REGISTRAR USUARIO" look="primary"  collapsible="false">
+                <b:panel title="REGISTRAR USUARIO" look="primary"  collapsible="false" id="panel">
+                       <b:row>
+                        <b:column medium-screen="2">
+                            <h:outputLabel value="Codigo Usuario"
+                                           for="codigoUsuario"/>
+                        </b:column>
+                        <b:column medium-screen="4">
+                            <b:inputText placeholder="Codigo"
+                                        
+                                         id="codigo"
+                                         value="#{usuarioController.codigo}"
+                                         required="true"
+                                         
+                                         
+                                         />
+                               
+                        </b:column>
+                      
+                               
+                          
+                       <b:column medium-screen="2">
+                            <b:commandButton value="Buscar"
+                                             onclick="ajax:usuarioController.hacerGet()"
+                                             update="panel"
+                                             look="primary"
+                                             style="width:100%" />
+                        </b:column>
+                        
+                    </b:row>
                     <b:row>
                         <b:column medium-screen="2">
                             <h:outputLabel value="Nombre"
                                            for="nombre"/>
                         </b:column>
+                        <a href="RegistrarUsuario.xhtml"></a>
                         <b:column medium-screen="4">
                             <b:inputText placeholder="Nombre"
 
@@ -27,7 +59,7 @@
                                          value="#{usuarioController.nombre}"/>
                         </b:column>
                         <b:column medium-screen="6" style-class="message">
-                            <b:message for="nombre"/>
+                            <b:message for="codigo"/>
                         </b:column>
                     </b:row>
 
@@ -38,7 +70,7 @@
                         </b:column>
                         <b:column medium-screen="4">
                             <b:inputText placeholder="Apellido"
-                                         required="true"
+                                      
                                          id="apelldio"
                                          value="#{usuarioController.apellido}"/>
                         </b:column>
@@ -57,7 +89,7 @@
                         <b:column medium-screen="4">
 
                             <b:selectOneMenu value="#{usuarioController.rol}" 
-                                             required="true"  
+                                            
                                              select2="true"  >
 
 
@@ -76,7 +108,7 @@
                         </b:column>
                         <b:column medium-screen="4">
                             <b:inputText placeholder="Correo"
-                                         required="true"
+                                     
 
                                          id="correo"
                                          value="#{usuarioController.correo}"/>
@@ -92,7 +124,7 @@
                         </b:column>
                         <b:column medium-screen="4">
                             <b:inputSecret
-                                required="true"
+                          
 
                                 id="password"
                                 value="#{usuarioController.password1}"/>
@@ -112,17 +144,31 @@
                             <b:commandButton value="Registrarse"
                                              action="#{usuarioController.insert()}"
                                              look="primary"
-                                             style="width:100%" />
+                                             style="width:100%"
+                                             update="@form"
+                                             />
                         </b:column>
                          <b:column medium-screen="6">
 
 
                         </b:column>
                     </b:row>
+                    
+             
+                    
+       
                 </b:panel>
             </b:container>                    
         </h:form>
+                
             </ui:define>
+
+       
+            
+            
+            
+            
+    
 
         </ui:composition>
 

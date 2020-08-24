@@ -1,0 +1,340 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <body>
+
+        <ui:composition template="./../resources/plantillas/plantillaMenu.xhtml">
+
+            <ui:define name="content">
+
+
+
+                <h:form>    
+                    <h3>Basic</h3>
+                    <p:inputText />
+
+                    <h3>Floating Label</h3>
+                    <span class="ui-float-label">
+                        <p:inputText id="float-input" value="#{basicView.text}" />
+                        <p:outputLabel for="@previous" value="Username" />
+                    </span>
+
+                </h:form>
+
+
+                <h:form id="registroConsulta"   >
+                    <b:container fluid="true">
+                        <b:panel title="Consulta" look="primary"  collapsible="false"  id="panelform">
+
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <p:inputText />
+                                                              
+                                </b:column>
+                            </b:row>
+
+
+
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputLabel value="Alergia"
+                                                   for="cedula"/>                                    
+                                </b:column>
+                                <b:column medium-screen="4">
+                                   <span class="ui-float-label">
+                                       <p:inputText id="float-input" value="#{basicView.text}"  style="width: 100%; background-color:  #ffffff"/>
+                                        <p:outputLabel for="@previous" value="Nombre" />
+                                    </span>      
+                                </b:column>
+                                <b:column medium-screen="6" style-class="message">
+                                                          
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column medium-screen="2">
+                                  
+                                </b:column>
+                                <b:column medium-screen="4">
+                                       <span class="ui-float-label">
+                                       <p:inputText id="float-input2" value="#{basicView.text}"  style="width: 100%"/>
+                                        <p:outputLabel for="@previous" value="Username" />
+                                    </span>        
+                                </b:column>
+                                <b:column medium-screen="6" style-class="message">
+                                    <b:message for="sintoma"/>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputLabel value="padecimiento"
+                                                   for="padecimiento"  class="ui-float-label"/>
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputText placeholder="Pacecimiento"
+
+                                                 id="padecimiento"
+                                                 value="#{consultaController.padecimiento}"/>
+                                </b:column>
+                                <b:column medium-screen="6" style-class="message">
+                                    <b:message for="sintoma"/>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputLabel value="Observaciones"
+                                                   for="apellido2"/>
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputText placeholder="Observaciones"
+                                                 required="true"
+                                                 id="observaciones"
+                                                 value="#{consultaController.observacion}"/>
+                                </b:column>
+                                <b:column medium-screen="6" style-class="message">
+                                    <b:message for="observacion"/>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputLabel value="Fecha"
+                                                   for="fecha1"/>
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:datepicker id="fecha1"
+                                                  required="true"
+                                                  value="#{consultaController.fecha}"/>
+                                </b:column>
+                                <b:column medium-screen="6" style-class="message">
+                                    <b:message for="fecha1"/>
+                                </b:column>
+                            </b:row>
+
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputLabel value="Codigo Medico" for="codigoMedico"/>
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputText placeholder="CodigoMedico"
+                                                 required="true"
+
+                                                 id="codigoMedico"
+                                                 value="#{consultaController.codigoMedico}"/>
+                                </b:column>
+                                <b:column medium-screen="6" style-class="message">
+                                    <b:message for="codigoMedico"/>
+                                </b:column>
+                            </b:row>
+                            <b:row>     <b:column medium-screen="2">
+                                    <h:outputLabel value="Codigo Receta" for="codigoReceta"/>
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputText placeholder="CodigoReceta"
+                                                 required="true"
+                                                 disabled="true"
+                                                 id="codigoReceta"
+                                                 value="#{consultaController.codigoReceta}"/>
+                                </b:column>
+                                <b:column medium-screen="6" style-class="message">
+                                    <b:message for="codigoReceta"/>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputLabel value="Codigo Atleta " for="codigoAtleta"/>
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputText placeholder="CodigoAtleta"
+                                                 required="true"
+                                                 disabled="true"
+
+                                                 id="codigoAtleta"
+                                                 value="#{consultaController.codigoAtleta}"/>
+                                </b:column>
+                                <b:column medium-screen="6" style-class="message">
+                                    <b:message for="codigoAtleta"/>
+                                </b:column>
+                            </b:row>
+
+
+                            <b:row>
+                                <b:column medium-screen="2">
+
+
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:commandButton value="Ingresar"
+                                                     action="#{consultaController.insertar()}"
+                                                     look="primary"
+                                                     style="width:100%" />
+                                </b:column>
+                            </b:row>
+
+
+
+
+
+                            <b:dataTable 
+                                value="#{atletaController.atletas}"
+                                var="atleta"
+                                excel="true"
+                                csv="true"
+                                pdf="true"
+                                copy="true"
+                                print="true"
+                                columnVisibility="true">
+                                <b:dataTableColumn value="#{atleta.codigo}" width="10%" label="Id"/>
+                                <b:dataTableColumn value="#{atleta.cedula}" width="20%" label="Cedula"/>
+                                <b:dataTableColumn value="#{atleta.nombre}" width="20%" label="Nombre"/>
+                                <b:dataTableColumn value="#{atleta.apellido}" width="20%" label="Apellido"/>
+                                <b:dataTableColumn value="#{atleta.fechaNaci}" 
+                                                   style="text-align: center"
+                                                   width="10%" label="F. Nacimiento"/>
+                                <b:dataTableColumn value="#{atleta.peso}" 
+                                                   style="text-align: center"
+                                                   width="10%" label="Peso"/>
+                                <b:dataTableColumn value="#{atleta.correo}" 
+                                                   style="text-align: center"
+                                                   width="10%" label="Correo"/>
+                                <b:dataTableColumn value="#{atleta.direccion}" 
+                                                   style="text-align: center"
+                                                   width="10%" label="Direccion"/>
+                                <b:dataTableColumn value="#{atleta.telefono}" 
+                                                   style="text-align: center"
+                                                   width="10%" label="Telefono"/>
+                                <b:dataTableColumn label="Genero">
+                                    <b:commandButton value="Seleccionar"
+
+                                                     onclick="ajax:consultaController.setCodigoAtleta(atleta.codigo)"
+                                                     update="@form"
+                                                     />
+
+
+                                </b:dataTableColumn>
+
+                            </b:dataTable>
+
+
+
+
+
+
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputLabel value="Dosis De La receta"
+                                                   for="dosis"/>                                    
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputText placeholder="dosis"
+
+
+                                                 id="dosis"
+                                                 value="#{recetaController.dosis}"/>
+                                </b:column>
+                                <b:column medium-screen="6" style-class="message">
+                                    <b:message for="dosis"/>                                    
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputLabel value="Descripcion"
+                                                   for="descripcion"/>
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputText placeholder="Descripcion"
+                                                 required="true"
+                                                 id="Descripcion"
+                                                 value="#{recetaController.descripcion}"/>
+                                </b:column>
+                                <b:column medium-screen="6" style-class="message">
+                                    <b:message for="descripcion"/>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputLabel value="Cantidad"
+                                                   for="canditad"/>
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputText placeholder="cantidad"
+                                                 mask="999"
+                                                 id="cantidad"
+                                                 value="#{recetaController.cantidad}"/>
+                                </b:column>
+                                <b:column medium-screen="6" style-class="message">
+                                    <b:message for="cantidad"/>
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputLabel value="Fecha"
+                                                   for="fecha"/>
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:datepicker id="fecha"
+                                                  required="true"
+                                                  value="#{recetaController.fecha}"/>
+                                </b:column>
+                                <b:column medium-screen="6" style-class="message">
+                                    <b:message for="fecha"/>
+                                </b:column>
+                            </b:row>
+
+                            <b:row>
+                                <b:column medium-screen="2">
+
+
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:commandButton value="Crear Receta"
+                                                     onclick="ajax:recetaController.inserta()"
+                                                     update="@form"
+                                                     look="primary"
+                                                     style="width:100%" />
+                                </b:column>
+                            </b:row>
+
+
+
+                            <b:dataTable 
+                                value="#{recetaController.recetas}"
+                                var="receta"
+                                excel="true"
+                                csv="true"
+                                pdf="true"
+                                copy="true"
+                                print="true"
+                                columnVisibility="true">
+                                <b:dataTableColumn value="#{receta.codigo}" width="10%" label="Codigo"/>
+                                <b:dataTableColumn value="#{receta.dosis}" width="20%" label="Dosis"/>
+                                <b:dataTableColumn value="#{receta.descripcion}" width="20%" label="Descripcion"/>
+                                <b:dataTableColumn value="#{receta.cantidad}" width="20%" label="Cantidad"/>
+                                <b:dataTableColumn value="#{receta.fecha}" 
+                                                   style="text-align: center"
+                                                   width="10%" label="Fecha"/>
+                                <b:dataTableColumn label="Seleccionar">
+                                    <b:commandButton value="Seleccionar"
+                                                     onclick="ajax:consultaController.setCodigoReceta(receta.codigo)}"
+                                                     update="@form"
+                                                     />
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                        </b:panel>
+
+
+                    </b:container>                    
+                </h:form>
+
+
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

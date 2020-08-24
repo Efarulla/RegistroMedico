@@ -147,9 +147,6 @@ public class AtletaController extends Atleta implements Serializable {
         String nombreArchivoSalida="attachement; filename=reporteAtletas.pdf";
         Reporte.descargarPdf(realPath,null,nombreArchivoSalida);
         
-        
-    
-  
 }
   public String navegaAtleta(){
       this.borrarDatosAtleta();

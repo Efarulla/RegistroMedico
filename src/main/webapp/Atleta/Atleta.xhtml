@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../resources/plantillas/plantillaMenu.xhtml">
+
+            <ui:define name="content">
+                <p:tabView style="background-color:  azure">
+
+                    <p:tab title="Registrar Atleta" >
+                        <h:form id="registroAtleta">
+                            <b:container fluid="true">
+
+                                <b:panel title="Atleta" look="primary"  collapsible="false">
+
+                                    
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Cédula"
+                                                           for="cedula"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:inputText placeholder="9-9999-9999"
+                                                         required="true"
+                                                         id="cedula"
+                                                         value="#{atletaController.cedula}"/>
+                                        </b:column>
+                                       
+                                    </b:row>
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Nombre"
+                                                           for="nombre"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:inputText placeholder="Nombre del atleta"
+                                                         required="true"
+                                                         id="nombre"
+                                                         value="#{atletaController.nombre}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="nombre"/>
+                                        </b:column>
+                                    </b:row>
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Apellidos"
+                                                           for="apellido"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:inputText placeholder="Apellidos del atleta"
+                                                         required="true"
+                                                         id="apellido"
+                                                         value="#{atletaController.apellido}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="apellido"/>
+                                        </b:column>
+                                    </b:row>
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Fecha de nacimiento"
+                                                           for="fechaNaci"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:datepicker
+                                                        id="fecha"
+                                                        placeholder="dd/mm/aaaa"
+                                                        required="false"
+                                                        value="#{atletaController.fechaNaci}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="fechaNaci"/>
+                                        </b:column>
+                                    </b:row>
+
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Peso" for="peso"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:inputText placeholder="Peso del atleta"
+                                                         required="true"
+
+                                                         id="peso"
+                                                         value="#{atletaController.peso}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="peso"/>
+                                        </b:column>
+                                    </b:row>
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Correo" for="correo"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:inputText placeholder="text@mail.com"
+                                                         required="true"
+                                                         mask="email"
+                                                         id="correo"
+                                                         value="#{atletaController.correo}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="correo"/>
+                                        </b:column>
+                                    </b:row>
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Dirección " for="direccion"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:inputTextarea placeholder="Dirección"
+                                                             required="true"
+
+                                                             id="direccion"
+                                                             value="#{atletaController.direccion}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="dirrecion"/>
+                                        </b:column>
+                                    </b:row>
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Teléfono" for="telefono"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:inputText placeholder="0000-0000"
+                                                         required="true"
+                                                         mask="numeric"
+                                                         maxlength="8"
+                                                         id="telefono"
+                                                         value="#{atletaController.telefono}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="telefono"/>
+                                        </b:column>
+                                    </b:row>
+
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:commandButton value="Registrar"
+                                                             action="#{atletaController.inserta()}"
+                                                             look="primary"
+                                                             style="width:100%" />
+                                        </b:column>
+                                    </b:row>
+                                </b:panel>
+                            </b:container>
+                        </h:form>
+                    </p:tab>
+
+                    <p:tab title="Consultar Atletas" >
+
+                        <h:form>
+                            <b:dataTable
+                                value="#{atletaController.atletas}"
+                                var="atleta"
+                                excel="true"
+                                csv="true"
+                                pdf="true"
+                                copy="true"
+                                print="true"
+                                columnVisibility="true">
+                                <b:dataTableColumn value="#{atleta.codigo}" width="10%" label="Id"/>
+                                <b:dataTableColumn value="#{atleta.cedula}" width="20%" label="Cedula"/>
+                                <b:dataTableColumn value="#{atleta.nombre}" width="20%" label="Nombre"/>
+                                <b:dataTableColumn value="#{atleta.apellido}" width="20%" label="Apellido"/>
+                                <b:dataTableColumn value="#{atleta.fechaNaci}"
+                                                   style="text-align: center"
+                                                   width="10%" label="F. Nacimiento"/>
+                                <b:dataTableColumn value="#{atleta.peso}"
+                                                   style="text-align: center"
+                                                   width="10%" label="Peso"/>
+                                <b:dataTableColumn value="#{atleta.correo}"
+                                                   style="text-align: center"
+                                                   width="10%" label="Correo"/>
+                                <b:dataTableColumn value="#{atleta.direccion}"
+                                                   style="text-align: center"
+                                                   width="10%" label="Direccion"/>
+                                <b:dataTableColumn value="#{atleta.telefono}"
+                                                   style="text-align: center"
+                                                   width="10%" label="Telefono"/>
+                                <b:dataTableColumn label="Acción"
+                                           width="10%"
+                                           style="text-align: center">
+                            <b:commandButton value="Editar"
+                                             action="#{atletaController.edita(atleta.codigo)}" />
+                                </b:dataTableColumn>
+
+                            </b:dataTable>
+                        </h:form>
+
+
+
+                    </p:tab>
+                    
+
+                </p:tabView>
+
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

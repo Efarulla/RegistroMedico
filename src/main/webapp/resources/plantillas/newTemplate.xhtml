@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./../css/default.css"/>
+        <h:outputStylesheet name="./../css/cssLayout.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <p:sidebar widgetVar="sidebar1" baseZIndex="1000" class="side" style=" background-color: #383838"    >
+
+            <h1 style="font-weight:normal; color:  #ffffff">Menu</h1>
+            <h:form>
+
+
+                <br/>
+                <h5 style="font-weight:normal; color:  #ffffff">Usuario</h5>
+
+                <b:commandButton action="#{usuarioController.navegaRegistrarUsuario()}" value="Registro Usuario" id="BotonRegistroPw" style="  width: 100%; height: 30px"  class="boton"   /><br/> 
+                <b:commandButton action="#{usuarioController.navegaRecuperarPw()}" value="Recuperar Contraseña" id="BotonRecuperaPw" style="  width: 100%" class="boton" /><br/> 
+                <b:commandButton action="#{usuarioController.navegaCambioPw()}" value="Cambiar Contraseña" id="BotonCambioPW" style="  width: 100%"   /><br/> 
+
+
+                <br/>
+                <h5 style="font-weight:normal; color:  #ffffff">Atleta</h5>
+
+                <b:commandButton action="#{atletaController.navegaAtleta()}" value="Registrar Atleta" id="BotonAtleta" style="  width: 100%" class="boton"  /><br/> 
+                <b:commandButton action="#{atletaController.navegaedita()}" value="Editar Atleta" id="BotonEdita" style="  width: 100%" class="boton" /><br/> 
+                <br/>
+                <h5 style="font-weight:normal; color:  #ffffff">Consulta</h5>
+
+                <b:commandButton action="#{consultaController.navegaConsulta()}" value="Gestionar Consulta" id="BotonConsulta" style="  width: 100%" class="boton" /><br/> 
+                <br/>
+                <b:commandButton action="#{medicamentoController.navegaMedicamento()}" value="Registrar Medicamento" id="BotonMedicamento" style="  width: 100%"  /><br/> 
+                <b:commandButton action="#{medicamentoController.navegaModificarMedicamento()}" value="Editar Medicamento" id="BotonEditamediamento" style="  width: 100%" class="boton" /><br/> 
+                <h5 style="font-weight:normal; color:  #ffffff">Atleta</h5>
+                <br/>
+                <p:button href="/RegistroMedico/faces/Proveedor/Proveedor.xhtml" value="Proveedor" style="width: 200px" class="boton"/><br/>
+                <p:button href="/RegistroMedico/faces/Proveedor/ModificarProveedor.xhtml" value="Modificar Proveedor" style="width: 200px" class="boton"/><br/>
+                <p:button href="/RegistroMedico/faces/index.xhtml" value="Cerrar Sesion" style="width: 200px" class="boton"/><br/>
+                <p:button href="/RegistroMedico/faces/Reportes/Reportes.xhtml" value="Reportes" style="width: 200px" class="boton"/><br/>
+
+
+
+
+
+            </h:form>
+        </p:sidebar>
+        <b:navBar fluid="true"  style="background-color: rgba(0,0,0,.50)"  >
+            <b:navbarLinks pull="left">
+                <p:commandButton value="MENU" oncomplete="PF('sidebar1').show()"  style="width: 100px"   />
+            </b:navbarLinks>
+
+            <b:navbarLinks pull="right">
+                <b:image library="images" name="regmed.png" style="height: 55px" />
+            </b:navbarLinks>
+
+            <p:commandButton value="Respaldos" id="respaldo"  action="#{atletaController.navegaRespaldo()}" rendered="#{usuarioController.respaldo()}"/>
+            <p:commandButton value="Reportes" id="reportes"  action="#{atletaController.navegaRespaldo()}" />
+        </b:navBar>
+
+
+        <div id="top" class="top">
+            <ui:insert name="top">Top</ui:insert>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">
+
+
+
+
+
+            </ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

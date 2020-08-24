@@ -32,7 +32,7 @@ public class RecetaController extends Receta implements Serializable {
                     "Succes", "Insertado");
             FacesContext.getCurrentInstance().addMessage("RecetaForm:dosis", mensaje);
             
-            
+            this.borrarDatos();
         } else {  //si no pudo insertarlo
             FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Error", "Posible codigo duplicado...");
@@ -114,4 +114,14 @@ public class RecetaController extends Receta implements Serializable {
         }
     }
 
+    public void borrarDatos(){
+    this.setCantidad(0);
+    this.setCodigo(0);
+    this.setDescripcion("");
+    this.setDosis("");
+    this.setFecha(null);
+    
+    }
+    
+    
 }

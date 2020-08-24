@@ -1,0 +1,279 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../resources/plantillas/plantillaMenu.xhtml">
+
+            <ui:define name="content">
+
+                <p:tabView style="background-color:  azure">
+                    <p:tab title="REGISTRAR MEDICAMENTO" >
+                        <h:form id="registroMedicamento">
+                            <b:container fluid="true">
+
+                                <b:panel title="REGISTRAR MEDICAMENTO" look="primary"  collapsible="false">
+
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Codigo"
+                                                           for="codigo_medicamento"/>                                    
+                                        </b:column>
+                                        <b:column medium-screen="1">
+                                            <b:inputText placeholder=""
+                                                         id="codigo_medicamento"
+                                                         value="#{medicamentoController.codigo_medicamento}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="codigo_medicamento"/>                                    
+                                        </b:column>
+                                    </b:row>
+
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="" 
+                                                           for="nombre_md"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+
+
+
+                                        </b:column>
+
+                                    </b:row>
+
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Nombre"
+                                                           for="nombre_md"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:inputText placeholder="Nombre"
+
+                                                         id="nombre_md"
+                                                         value="#{medicamentoController.nombre_md}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="nombre_md"/>
+                                        </b:column>
+                                    </b:row>
+
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Descripcion"
+                                                           for="descripcion_md"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:inputText placeholder="Descripcion"
+
+
+                                                         value="#{medicamentoController.descripcion_md}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="descripcion_md"/>
+                                        </b:column>
+
+                                    </b:row>
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Cantidad"
+                                                           for="cantidad_md"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:inputText placeholder="Cantidad"
+
+
+                                                         value="#{medicamentoController.cantidad_md}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="cantidad_md"/>
+                                        </b:column>
+
+                                    </b:row>
+
+
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:commandButton value="Registrar medicamento"
+                                                             action="#{medicamentoController.insertM()}"
+                                                             look="primary"
+                                                             style="width:100%" />
+
+                                            <b:commandButton value="Eliminar"
+                                                             action="#{medicamentoController.eliminaM()}"
+                                                             look="danger"
+                                                             style="width:100%" />
+
+                                        </b:column>
+                                    </b:row>
+                                </b:panel>
+                            </b:container>                    
+                        </h:form>
+
+
+
+
+
+                    </p:tab>
+
+                    <p:tab title="MEDICAMENTOS" >
+
+                        <h:form>
+                            <b:dataTable 
+                                value="#{medicamentoController.medicamentos}"
+                                var="medicamento"
+                                excel="true"
+                                csv="true"
+                                pdf="true"
+                                copy="true"
+                                print="true"
+                                columnVisibility="true">
+                                <b:dataTableColumn value="#{medicamento.codigo_medicamento}" width="10%" label="Codigo"/>
+                                <b:dataTableColumn value="#{medicamento.nombre_md}" width="20%" label="Nombre"/>
+                                <b:dataTableColumn value="#{medicamento.descripcion_md}" width="20%" label="Descripcion"/>
+                                <b:dataTableColumn value="#{medicamento.cantidad_md}" width="20%" label="Cantidad"/>
+
+                            </b:dataTable>
+                        </h:form>
+
+
+
+                    </p:tab>
+
+                    <p:tab title="MODIFICAR MEDICAMENTO" >
+                        <h:form id="modificarProveedor">
+                            <b:container fluid="true">
+
+                                <b:panel title="MODIFICAR MEDICAMENTO" look="primary"  collapsible="false">
+
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Codigo"
+                                                           for="codigo_Proveedor"/>                                    
+                                        </b:column>
+                                        <b:column medium-screen="1">
+                                            <b:inputText placeholder=""
+                                                         id="codigo"
+                                                         value="#{proveedorController.codigo_Proveedor}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="codigo_Proveedor"/>                                    
+                                        </b:column>
+                                    </b:row>
+
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="" 
+                                                           for="nombre_P"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+
+
+
+                                        </b:column>
+
+                                    </b:row>
+
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Nombre"
+                                                           for="nombre_P"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:inputText placeholder="Nombre"
+
+                                                         id="nombre_P"
+                                                         value="#{proveedorController.nombre_P}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="nombre_P"/>
+                                        </b:column>
+                                    </b:row>
+
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Dirección"
+                                                           for="direccion_P"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:inputText placeholder="Dirección"
+                                                         required="true"
+                                                         id="direccion_P"
+                                                         value="#{proveedorController.direccion_P}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="direccion_P"/>
+                                        </b:column>
+
+                                    </b:row>
+
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Provincia" for="provincia_P"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:inputText placeholder="Provincia"
+                                                         required="true"
+
+                                                         id="provincia_p"
+                                                         value="#{proveedorController.provincia_P}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="provincia_P"/>
+                                        </b:column>
+                                    </b:row>
+
+                                    <b:row>
+                                        <b:column medium-screen="2">
+                                            <h:outputLabel value="Telefono" for="telefono_P"/>
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:inputText placeholder="Telefono"
+                                                         required="true"
+                                                         id="telefono_P"
+                                                         value="#{proveedorController.telefono_P}"/>
+                                        </b:column>
+                                        <b:column medium-screen="6" style-class="message">
+                                            <b:message for="telefono_P"/>
+                                        </b:column>
+
+                                    </b:row>
+
+
+                                    <b:row>
+                                        <b:column medium-screen="2">
+
+
+                                        </b:column>
+                                        <b:column medium-screen="4">
+                                            <b:commandButton value="Modificar proveedor"
+                                                             action="#{medicamentoController.modificaM()}"
+                                                             look="primary"
+                                                             style="width:100%" />
+                                        </b:column>
+                                    </b:row>
+                                </b:panel>
+                            </b:container>                    
+                        </h:form>
+                    </p:tab>
+
+
+                </p:tabView>
+
+
+
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

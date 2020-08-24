@@ -8,16 +8,17 @@
 
     <body>
 
-        <ui:composition template="./resources/plantillas/plantillaMenu.xhtml">
+        <ui:composition template="./../resources/plantillas/plantillaMenu.xhtml">
 
             <ui:define name="content">
-                <p:tabView style="background-color:  azure" >
+                
+                  <p:tabView style="background-color:  azure" >
 
-                    <p:tab title="Consulta" >
+                    <p:tab title="Consulta"   >
                         <h:form id="registroConsulta"   >
                             <b:container fluid="true">
 
-                                <b:panel title="Consulta" look="primary"  collapsible="false">
+                                <b:panel title="Consulta" look="primary"  collapsible="false"  id="panelform">
 
 
 
@@ -196,8 +197,8 @@
                                 <b:dataTableColumn label="Genero">
                                     <b:commandButton value="Seleccionar"
                                                       
-                                                     onclick="ajax:consultaController.setCodigoAtleta(atleta.codigo)"
-                                                      update="@form"
+                                                     
+                                                     action="#{consultaController.atletaingresocunsulta(atleta.codigo)}"
                                                      />
                                                      
                                                         
@@ -295,8 +296,7 @@
                                     </b:row>
                                 </b:panel>
                             </b:container> 
-                        </h:form>
-                           <h:form>
+                      
                         <b:container> 
                             <b:panel>
 
@@ -344,6 +344,8 @@
 
                 </p:tabView>
 
+                
+                
             </ui:define>
 
         </ui:composition>

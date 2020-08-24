@@ -11,16 +11,17 @@ import java.util.logging.Logger;
 
 public class MedicamentoGestion {
 
-    private static final String SQL_INSERT_MEDICAMENTO = "insert into medicamento values (?,?,?,?)";
+    private static final String SQL_INSERT_MEDICAMENTO = "INSERT INTO MEDICAMENTO (NOMBRE_MD,DESCRIPCION_MD,CANTIDAD_MD)\n" +
+"VALUES (?,?,?)";
 
     public static boolean insertarMedicamento(Medicamento medicamento) {
         try {
 
             PreparedStatement sentencia = Conexion.getConexion().prepareStatement(SQL_INSERT_MEDICAMENTO);
-            sentencia.setInt(1, medicamento.getCodigo_medicamento());
-            sentencia.setString(2, medicamento.getNombre_md());
-            sentencia.setString(3, medicamento.getDescripcion_md());
-            sentencia.setInt(4, medicamento.getCantidad_md());
+            //sentencia.setInt(1, medicamento.getCodigo_medicamento());
+            sentencia.setString(1, medicamento.getNombre_md());
+            sentencia.setString(2, medicamento.getDescripcion_md());
+            sentencia.setInt(3, medicamento.getCantidad_md());
             int fila = sentencia.executeUpdate();
             return fila > 0;
         } catch (SQLException ex) {
@@ -69,11 +70,11 @@ public class MedicamentoGestion {
         return false;
 
     }
-    private static final String SQL_DELETE_PROVEEDOR = "delete from proveedor where codigo_proveedor=?";
+    private static final String SQL_DELETE_MEDICAMENTO = "delete from medicamento where codigo_medicamento=?";
 
     public static boolean eliminarMedicamento(Medicamento medicamento) {
         try {
-            PreparedStatement sentencia = Conexion.getConexion().prepareStatement(SQL_DELETE_PROVEEDOR);
+            PreparedStatement sentencia = Conexion.getConexion().prepareStatement(SQL_DELETE_MEDICAMENTO);
             sentencia.setInt(1, medicamento.getCodigo_medicamento());
             int fila = sentencia.executeUpdate();
             return fila > 0;
@@ -83,13 +84,13 @@ public class MedicamentoGestion {
         return false;
     }
 
-    private static final String SQL_SELECT_PROVEEDORES = "Select * from proveedor where codigo_p=?";
+    private static final String SQL_SELECT_MEDICAMENTOS = "Select * from medicamento ";
 
     public static ArrayList<Medicamento> getMedicamentos() {
         ArrayList<Medicamento> lista2 = new ArrayList<>();
 
         try {
-            PreparedStatement consultar = Conexion.getConexion().prepareStatement(SQL_SELECT_PROVEEDORES);
+            PreparedStatement consultar = Conexion.getConexion().prepareStatement(SQL_SELECT_MEDICAMENTOS);
             ResultSet rs = consultar.executeQuery();
             while (rs.next()) {
                 lista2.add(

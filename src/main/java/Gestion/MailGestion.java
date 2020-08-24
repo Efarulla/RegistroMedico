@@ -34,7 +34,7 @@ public class MailGestion {
     
     
     
-    public static  Transport sendMail(String toMail,String message) throws AddressException, MessagingException{
+    public static  Transport sendMail(String toMail,String message,String cuerpo) throws AddressException, MessagingException{
     
         Properties props=System.getProperties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -48,14 +48,14 @@ public class MailGestion {
                 props.put("mail.smtp.socketFactory.fallback", "false");
                 
                 Session mailSession=Session.getDefaultInstance(props, null);
-                mailSession.setDebug(true);
+               // mailSession.setDebug(true);
                 
                 Message mailMessage=new MimeMessage(mailSession);
                 
                 mailMessage.setFrom(new InternetAddress("info@info.com"));
                 mailMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(toMail));
-                mailMessage.setContent("Su Contraseña es: "+message,"text/html");
-                mailMessage.setSubject("Olvidó Su Contraseña");
+                mailMessage.setContent(message,"text/html");
+                mailMessage.setSubject(cuerpo);
                 
                 Transport transport=mailSession.getTransport("smtp");
                 transport.connect("smtp.gmail.com", "cuentaparapruebainfo@gmail.com","QWERTY13579");
@@ -75,8 +75,10 @@ public class MailGestion {
             statement.setString(1, codigo);
             ResultSet rs = statement.executeQuery();
             if (rs != null && rs.next()) {
-               mail = new Mail(
-                        rs.getString(5),rs.getString(6),rs.getString(1));
+               mail = new Mail();
+                       mail.setCodigo(codigo);
+                       mail.setMessage(rs.getString(6));
+                       mail.setToMail(rs.getString(5));
                 
             }
             

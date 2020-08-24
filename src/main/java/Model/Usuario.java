@@ -4,7 +4,7 @@ package Model;
 
 public class Usuario {
     private String codigo;
-    private String rol;
+    private int rol;
     private String nombre;
     private String apellido;
     private String correo;
@@ -12,7 +12,7 @@ public class Usuario {
     private String password2;
     private boolean activo;
 
-    public Usuario(String codigo, String rol, String nombre, String apellido, String correo, String password1, String password2, boolean activo) {
+    public Usuario(String codigo, int rol, String nombre, String apellido, String correo, String password1, String password2, boolean activo) {
         this.codigo = codigo;
         this.rol = rol;
         this.nombre = nombre;
@@ -34,11 +34,11 @@ public class Usuario {
         this.codigo = codigo;
     }
 
-    public String getRol() {
+    public int getRol() {
         return rol;
     }
 
-    public void setRol(String rol) {
+    public void setRol(int rol) {
         this.rol = rol;
     }
 

@@ -42,7 +42,7 @@ public class MailController extends Mail implements Serializable {
                  this.setMessage(m.getMessage());
                  
               try {
-                  t=MailGestion.sendMail(this.getToMail(),"Su id es:"+this.getCodigo()+"  "+ this.getMessage());
+                  t=MailGestion.sendMail(this.getToMail(),this.getMessage(),this.getCuerpo());
                   
                  
                   

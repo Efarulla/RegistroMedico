@@ -10,45 +10,76 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet library="css" name="default.css"/>
         <h:outputStylesheet library="css" name="cssLayout.css"/>
-        <title>Facelets Template</title>
+        <title>Registro Medico</title>
     </h:head>
 
     <h:body>
 
         <div id="top" class="top">
             <ui:insert name="top">
-                
-                
-                <p:sidebar widgetVar="sidebar1" baseZIndex="10000" class="side"   >
+                <p:sidebar widgetVar="sidebar1" baseZIndex="1000" class="side" style=" background-color: #383838"    >
 
-                    <h1 style="font-weight:normal">Menu</h1>
+                    <h1 style="font-weight:normal; color:  #ffffff">Menu</h1>
                     <h:form>
-                    <p:commandButton value="Consultas"  class="boton" action="Consulta.xhtml"/> <br/>
-                     <p:commandButton value="Registro De Usuarios" oncomplete="PF('sidebar1').hide()" class="boton"  style="margin-right:20px;" styleClass="ui-priority-primary" action="RegistrarUsuario.xhtml" /><br/>
-                     <p:commandButton value="Principal" oncomplete="PF('sidebar1').hide()"  class="boton" style="margin-right:20px;" styleClass="ui-priority-primary"  action="principal.xhtml"/><br/>
-                       <p:commandButton value="Atletas" oncomplete="PF('sidebar1').hide()"  class="boton" style="margin-right:20px;" styleClass="ui-priority-primary" /><br/>
-                        <p:commandButton value="Agendar" oncomplete="PF('sidebar1').hide()" class="boton" style="margin-right:20px;" styleClass="ui-priority-primary"   />
-                    
-                    
-                    
+
+
+                        <br/>
+                        <h5 style="font-weight:normal; color:  #ffffff">Usuario</h5>
+
+                        <b:commandButton action="#{usuarioController.navegaRegistrarUsuario()}" value="Registro Usuario" id="BotonRegistroPw" style="  width: 100%; height: 30px"  class="boton"   /><br/> 
+                        <b:commandButton action="#{usuarioController.navegaRecuperarPw()}" value="Recuperar Contraseña" id="BotonRecuperaPw" style="  width: 100%" class="boton" /><br/> 
+                        <b:commandButton action="#{usuarioController.navegaCambioPw()}" value="Cambiar Contraseña" id="BotonCambioPW" style="  width: 100%"   /><br/> 
+
+
+                        <br/>
+                        <h5 style="font-weight:normal; color:  #ffffff">Atleta</h5>
+
+                        <b:commandButton action="#{atletaController.navegaAtleta()}" value="Registrar Atleta" id="BotonAtleta" style="  width: 100%" class="boton"  /><br/> 
+                        <b:commandButton action="#{atletaController.navegaedita()}" value="Editar Atleta" id="BotonEdita" style="  width: 100%" class="boton" /><br/> 
+                        <br/>
+                        <h5 style="font-weight:normal; color:  #ffffff">Consulta</h5>
+
+                        <b:commandButton action="#{consultaController.navegaConsulta()}" value="Gestionar Consulta" id="BotonConsulta" style="  width: 100%" class="boton" /><br/> 
+                        <br/>
+                           <h5 style="font-weight:normal; color:  #ffffff">Medicamento</h5>
+                        <b:commandButton action="#{medicamentoController.navegaMedicamento()}" value="Gestionar Medicamentos" id="BotonMedicamento" style="  width: 100%"  /><br/> 
+                        <b:commandButton action="#{medicamentoController.navegaModificarMedicamento()}" value="Editar Medicamento" id="BotonEditamediamento" style="  width: 100%" class="boton" /><br/> 
+                       <h5 style="font-weight:normal; color:  #ffffff">Perfil</h5>
+                        <b:commandButton action="#{usuarioController.cerrarSesion()}" value="Cerrar Sesion" id="CERRARSESION" style="  width: 100%" class="boton" />
+
+                        <br/>
+
                     </h:form>
                 </p:sidebar>
-               
+                <b:form>
+                <b:navBar fluid="true"  style="background-color: rgba(0,0,0,.50)"  >
+
+                    <p:commandButton value="MENU" oncomplete="PF('sidebar1').show()"   />
+
+
+                    <b:navbarLinks pull="right">
+                        <b:image library="images" name="regmed.png" style="height: 55px" />
+                    </b:navbarLinks>
+
+                    <b:commandButton value="Respaldos" id="respaldo"  action="#{atletaController.navegaRespaldo()}" rendered="#{usuarioController.respaldo()}"/>
+                    <b:commandButton value="Reportes" id="reportes"  action="#{atletaController.navegaReportes()}" />
+                    <b:commandButton action="#{proveedorController.navegaProveedor()}" value="Proveedor" id="proveedorboton" />
+                    <b:commandButton action="#{proveedorController.navegaEditaProveedor()}" value="Editar Proveedor" id="editProveedor"/>
 
 
 
-                <p:commandButton value="MENU" oncomplete="PF('sidebar1').show()" />
 
 
+                </b:navBar>
 
-                
-                
-                
+
+</b:form>
+
             </ui:insert>
         </div>
 
         <div id="content" class="center_content">
-            <ui:insert name="content">Content</ui:insert>
+            <ui:insert name="content">  </ui:insert>
         </div>
 
     </h:body>

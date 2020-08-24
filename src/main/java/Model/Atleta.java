@@ -109,6 +109,11 @@ public class Atleta {
         this.telefono = telefono;
     }
 
+    @Override
+    public String toString() {
+        return "{"+"codigo"+":"+ codigo+","+ ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNaci=" + fechaNaci + ", peso=" + peso + ", correo=" + correo + ", direccion=" + direccion + ", telefono=" + telefono + '}';
+    }
+
     
     
     

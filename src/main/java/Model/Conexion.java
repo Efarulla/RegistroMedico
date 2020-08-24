@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 public class Conexion {
 
-    private static final String DBURL = "jdbc:derby://localhost:1527/RegistroNuevo";
+    private static final String DBURL = "jdbc:derby://localhost:1527/RegistroMedico";
     private static final String DBCLASS = "org.apache.derby.jdbc.ClientDriver";
     private static final String USER = "root";
     private static final String PW = "root";
